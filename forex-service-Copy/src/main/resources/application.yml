@@ -1,0 +1,27 @@
+com:
+  markit:
+    forex:
+      api:
+        url: https://www.freeforexapi.com/api/live
+
+server:
+  port: 8005
+  servlet:
+    context-path: /forex-service
+spring:
+  application:
+    name: forex-service
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    status-page-url-path: ${server.servlet.context-path}/actuator/info
+    health-check-url-path: ${server.servlet.context-path}/actuator/health
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+    lease-renewal-interval-in-seconds: 10
+
+
+
+# ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
